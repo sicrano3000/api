@@ -1,6 +1,7 @@
 package br.com.jp.api.services.impl;
 
 import br.com.jp.api.domain.User;
+import br.com.jp.api.exceptions.ObjectNotFoundExcpetion;
 import br.com.jp.api.repository.UserRepository;
 import br.com.jp.api.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class UserServiceImpl implements UserService {
     public User findById(Integer id) {
         Optional<User> obj = userRepository.findById(id);
 
-        return obj.orElse(null);
+        return obj.orElseThrow(() -> new ObjectNotFoundExcpetion("Objeto não encontrado"));
     }
 
 }
