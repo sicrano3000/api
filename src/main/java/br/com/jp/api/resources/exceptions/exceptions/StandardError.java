@@ -1,4 +1,4 @@
-package br.com.jp.api.repository.exceptions;
+package br.com.jp.api.resources.exceptions.exceptions;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

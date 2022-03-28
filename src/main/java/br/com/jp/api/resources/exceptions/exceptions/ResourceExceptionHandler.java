@@ -1,4 +1,4 @@
-package br.com.jp.api.repository.exceptions;
+package br.com.jp.api.resources.exceptions.exceptions;
 
 import br.com.jp.api.exceptions.ObjectNotFoundExcpetion;
 import org.springframework.http.HttpStatus;
