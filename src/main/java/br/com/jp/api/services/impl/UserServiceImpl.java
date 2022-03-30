@@ -2,6 +2,7 @@ package br.com.jp.api.services.impl;
 
 import br.com.jp.api.domain.User;
 import br.com.jp.api.domain.dto.UserDTO;
+import br.com.jp.api.exceptions.DataIntegratyViolationExcpetion;
 import br.com.jp.api.exceptions.ObjectNotFoundExcpetion;
 import br.com.jp.api.repository.UserRepository;
 import br.com.jp.api.services.UserService;
@@ -35,7 +36,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User create(UserDTO userDTO) {
+        findByEmail(userDTO);
         return userRepository.save(mapper.map(userDTO, User.class));
+    }
+
+    private void findByEmail(UserDTO userDTO) {
+        Optional<User> user = userRepository.findByEmail(userDTO.getEmail());
+
+        if (user.isPresent()) {
+            throw new DataIntegratyViolationExcpetion("E-mail já cadastrado no sistema");
+        }
     }
 
 }
