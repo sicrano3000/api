@@ -3,6 +3,7 @@ package br.com.jp.api.resources.exceptions.exceptions;
 import br.com.jp.api.exceptions.DataIntegratyViolationExcpetion;
 import br.com.jp.api.exceptions.ObjectNotFoundExcpetion;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
@@ -20,6 +21,7 @@ class ResourceExceptionHandlerTest {
 
     public static final String OBJETO_NAO_ENCONTRADO = "Objeto não encontrado";
     public static final String E_MAIL_JA_CADASTRADO = "E-mail já cadastrado";
+
     @InjectMocks
     private ResourceExceptionHandler exceptionHandler;
 
@@ -29,6 +31,7 @@ class ResourceExceptionHandlerTest {
     }
 
     @Test
+    @DisplayName("cobrindo retorno de objeto não encontrado")
     void whenObjectNotFoundExceptionThenReturnAResponseEntity() {
         ResponseEntity<StandardError> response = exceptionHandler
                 .objectNotFound(
@@ -48,6 +51,7 @@ class ResourceExceptionHandlerTest {
     }
 
     @Test
+    @DisplayName("cobrindo retorno de e-mail já cadastrado")
     void whenDataIntegrityViolationExceptionThenReturnAResponseEntity() {
         ResponseEntity<StandardError> response = exceptionHandler
                 .dataIntegrityViolationException(

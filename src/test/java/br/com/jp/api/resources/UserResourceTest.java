@@ -4,6 +4,7 @@ import br.com.jp.api.domain.User;
 import br.com.jp.api.domain.dto.UserDTO;
 import br.com.jp.api.services.UserService;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -50,6 +51,7 @@ class UserResourceTest {
     }
 
     @Test
+    @DisplayName("cobrindo endPoint de FindById")
     void whenFindByIdThenReturnSucess() {
         when(userService.findById(anyInt())).thenReturn(user);
         when(mapper.map(any(), any())).thenReturn(userDTO);
@@ -67,6 +69,7 @@ class UserResourceTest {
     }
 
     @Test
+    @DisplayName("cobrindo endPoint de FindAll")
     void whenFindAllThenReturnAListOfUserDTO() {
         when(userService.findAll()).thenReturn(List.of(user));
         when(mapper.map(any(), any())).thenReturn(userDTO);
@@ -86,6 +89,7 @@ class UserResourceTest {
     }
 
     @Test
+    @DisplayName("cobrindo endPoint de Create")
     void whenCreateThenReturnCreated() {
         when(userService.create(any())).thenReturn(user);
 
@@ -97,6 +101,7 @@ class UserResourceTest {
     }
 
     @Test
+    @DisplayName("cobrindo endPoint de Update")
     void whenUpdateThenReturnSucess() {
         when(userService.update(userDTO)).thenReturn(user);
         when(mapper.map(any(), any())).thenReturn(userDTO);
@@ -114,6 +119,7 @@ class UserResourceTest {
     }
 
     @Test
+    @DisplayName("cobrindo endPoint de Delete")
     void whenDeleteThenReturnSucess() {
         doNothing().when(userService).delete(anyInt());
 
