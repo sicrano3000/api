@@ -19,7 +19,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 class UserServiceImplTest {
@@ -28,7 +28,7 @@ class UserServiceImplTest {
     public static final String NAME = "Jonathan";
     public static final String EMAIL    = "jonathan@gmail.com";
     public static final String PASSWORD = "123";
-    public static final String NOT_FOUND = "Objeto não encontrado";
+    public static final String OBJETO_NAO_ENCONTRADO = "Objeto não encontrado";
     public static final int INDEX = 0;
     public static final String E_MAIL_JA_CADASTRADO_NO_SISTEMA = "E-mail já cadastrado no sistema";
 
@@ -67,13 +67,13 @@ class UserServiceImplTest {
 
     @Test
     void whenFindByIdThenReturnAnObjectNotFoundException() {
-        when(userRepository.findById(anyInt())).thenThrow(new ObjectNotFoundExcpetion(NOT_FOUND));
+        when(userRepository.findById(anyInt())).thenThrow(new ObjectNotFoundExcpetion(OBJETO_NAO_ENCONTRADO));
 
         try {
             service.findById(ID);
         } catch(Exception ex) {
             assertEquals(ObjectNotFoundExcpetion.class, ex.getClass());
-            assertEquals(NOT_FOUND, ex.getMessage());
+            assertEquals(OBJETO_NAO_ENCONTRADO, ex.getMessage());
         }
     }
 
@@ -147,11 +147,13 @@ class UserServiceImplTest {
     }
 
     @Test
-    void update() {
-    }
+    void deleteWithSucess() {
+        when(userRepository.findById(anyInt())).thenReturn(optionalUser);
+        doNothing().when(userRepository).deleteById(anyInt());
 
-    @Test
-    void delete() {
+        service.delete(ID);
+
+        verify(userRepository, times(1)).deleteById(anyInt());
     }
 
     private void startUser() {
