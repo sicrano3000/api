@@ -6,6 +6,7 @@ import br.com.jp.api.exceptions.DataIntegratyViolationExcpetion;
 import br.com.jp.api.exceptions.ObjectNotFoundExcpetion;
 import br.com.jp.api.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -52,6 +53,7 @@ class UserServiceImplTest {
     }
 
     @Test
+    @DisplayName("FindById retornando um User")
     void whenFindByIdThenReturnAnUserInstance() {
         when(userRepository.findById(anyInt())).thenReturn(optionalUser);
 
@@ -66,6 +68,7 @@ class UserServiceImplTest {
     }
 
     @Test
+    @DisplayName("FindById retornando uma exeção")
     void whenFindByIdThenReturnAnObjectNotFoundException() {
         when(userRepository.findById(anyInt())).thenThrow(new ObjectNotFoundExcpetion(OBJETO_NAO_ENCONTRADO));
 
@@ -78,6 +81,7 @@ class UserServiceImplTest {
     }
 
     @Test
+    @DisplayName("FindAll retornando uma lista de User")
     void whenFindAllThenReturnAnListOfUsers() {
         when(userRepository.findAll()).thenReturn(List.of(user));
 
@@ -93,6 +97,7 @@ class UserServiceImplTest {
     }
 
     @Test
+    @DisplayName("Create retornando sucesso")
     void whenCreateThenReturnSucess() {
         when(userRepository.save(any())).thenReturn(user);
 
@@ -107,6 +112,7 @@ class UserServiceImplTest {
     }
 
     @Test
+    @DisplayName("Create retornando uma exceção")
     void whenCreateThenReturnAnDataIntegrityViolationException() {
         when(userRepository.findByEmail(anyString())).thenReturn(optionalUser);
 
@@ -120,6 +126,7 @@ class UserServiceImplTest {
     }
 
     @Test
+    @DisplayName("Update retornando sucesso")
     void whenUpdateThenReturnSucess() {
         when(userRepository.save(any())).thenReturn(user);
 
@@ -134,6 +141,7 @@ class UserServiceImplTest {
     }
 
     @Test
+    @DisplayName("Update retornando uma exceção")
     void whenUpdateThenReturnAnDataIntegrityViolationException() {
         when(userRepository.findByEmail(anyString())).thenReturn(optionalUser);
 
@@ -147,6 +155,7 @@ class UserServiceImplTest {
     }
 
     @Test
+    @DisplayName("Delete retornando sucesso")
     void deleteWithSucess() {
         when(userRepository.findById(anyInt())).thenReturn(optionalUser);
         doNothing().when(userRepository).deleteById(anyInt());
@@ -157,6 +166,7 @@ class UserServiceImplTest {
     }
 
     @Test
+    @DisplayName("Delete retornando uma exeção")
     void deleteWithObjectNotFoundException() {
         when(userRepository.findById(ID)).thenThrow(new ObjectNotFoundExcpetion(OBJETO_NAO_ENCONTRADO));
 
