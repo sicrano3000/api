@@ -19,8 +19,7 @@ import java.util.stream.Collectors;
 public class UserResource {
 
     private static final Logger log = LoggerFactory.getLogger(UserResource.class);
-
-    public static final String ID = "/{id}";
+    private static final String ID = "/{id}";
 
     @Autowired
     private ModelMapper mapper;
