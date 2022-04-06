@@ -16,3 +16,6 @@ PUT https://app-infnet-jonathan-crespo.herokuapp.com/user
 
 Delete -
 DELETE https://app-infnet-jonathan-crespo.herokuapp.com/user{id}
+
+- Jonathan Philipe Amaral Crespo
+- Elber de Sena da Silva
